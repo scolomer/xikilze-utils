@@ -50,10 +50,10 @@ public class CSVReader extends BufferedReader {
    
    /**
     * Retourne la prochaine ligne d'enregistrements.
-    * Saute les lignes d'entêtes inutiles et charge l'entête si elle existe
+    * Saute les lignes d'entetes inutiles et charge l'entete si elle existe
     * 
     * @throws IOException
- * @throws CSVException 
+    * @throws CSVException 
     */
    public String[] readFields() throws IOException, CSVException {
    		if (!linesSkipped) {
@@ -91,7 +91,7 @@ public class CSVReader extends BufferedReader {
               char c = line.charAt(i);
               char nextC = ( i+1<line.length() ? line.charAt(i+1) : 0);
                             
-              // Marquage des début de séparation de champ
+              // Marquage des debut de separation de champ
               if ( !inText ) {
             	  if ( c == fldSep) {
             		  if ( lastChar == fldSep || i==0) {
@@ -112,7 +112,7 @@ public class CSVReader extends BufferedReader {
               }
               else { 
              
-	              // Marquage des fin de textes avec délimiteurs
+	              // Marquage des fin de textes avec delimiteurs
 		          if ( isTextSeparator ) {
 		        	   
 		        	  if ( internalSep==false && c == txtSep )
@@ -127,7 +127,7 @@ public class CSVReader extends BufferedReader {
 		        	  }
 		          }
 	              
-	              // Textes sans délimiteurs
+	              // Textes sans delimiteurs
 		          else
 		    	  if ( ! isTextSeparator && ( c == fldSep || i == line.length()-1 ) ) {
 		    		  if ( i == line.length()-1 && c != fldSep )
