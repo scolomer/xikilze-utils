@@ -13,9 +13,9 @@ eclipse {
     }
 }
 
-/*dependencies {
-	compile 'org.slf4j:slf4j-api:1.6.2'
-}*/
+dependencies {
+	testCompile 'junit:junit:4.11'
+}
 
 repositories {
     mavenCentral()

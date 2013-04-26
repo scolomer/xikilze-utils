@@ -109,6 +109,35 @@ public class HexUtils {
 		return buf.toString();
 	}
 	
+	public static String decodeComp3AsString(byte[] tab) {
+		StringBuilder bld = new StringBuilder();
+		
+		for (int i=0; i<tab.length; i++) {
+			int n1 = (tab[i] >> 4) & 0xF;
+			int n2 = (tab[i] & 0xF);
+			if (i < tab.length - 1) {
+				if (n1 >= 10 || n2 >= 10) throw new NumberFormatException("Computational-3 error");
+				if (bld.length() == 0) {
+					if (n1 != 0) bld.append(n1);
+					bld.append(n2);
+				} else {
+					bld.append(n1).append(n2);
+				}
+			} else {
+				if (n1 >= 10) throw new NumberFormatException("Computational-3 error");
+				bld.append(n1);
+				if (n2 < 10) bld.append(n2);
+				else if (n2 == 0xC) bld.insert(0, '+');
+				else if (n2 == 0xD) bld.insert(0, '-');
+				else if (n2 == 0xF);
+				else throw new NumberFormatException("Computational-3 error");
+			}
+		}
+		
+		return bld.toString();
+		
+	}
+	
 	public static byte[] subArray(byte[] tab, int offset, int len) {
 		byte[] subtab = new byte[len];
 		for (int i=0; i<len; i++) {
